@@ -30,10 +30,12 @@ export default class Server{
         console.log( "Escuchando sockets" );
         this.io.on( 'connection', cliente => {
             console.log( "cliente conectado" );
+            socket.conectarCliente( cliente );
             // Funcion empleada cuando el cliente se desconecta
             socket.desconectar( cliente );
             // mensajes del servidor
             socket.mensaje( cliente , this.io );
+            socket.configurarUsuario( cliente, this.io );
         });
 
     }
