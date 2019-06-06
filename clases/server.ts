@@ -31,8 +31,10 @@ export default class Server{
         this.io.on( 'connection', cliente => {
             console.log( "cliente conectado" );
             socket.conectarCliente( cliente );
+            // evento para emitir lista de usuarios
+            socket.emitirUsuarios( cliente , this.io );
             // Funcion empleada cuando el cliente se desconecta
-            socket.desconectar( cliente );
+            socket.desconectar( cliente , this.io);
             // mensajes del servidor
             socket.mensaje( cliente , this.io );
             socket.configurarUsuario( cliente, this.io );
